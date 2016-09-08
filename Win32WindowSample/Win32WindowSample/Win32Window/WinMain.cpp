@@ -2,7 +2,7 @@
 // include the basic windows header file
 #include <windows.h>
 #include <windowsx.h>
-
+#include <string>
 
 LRESULT CALLBACK WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 
@@ -78,16 +78,31 @@ LRESULT CALLBACK WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPara
 				{
 					MessageBox( hWnd, L"M was pressed", L"M was pressed", MB_OK );
 				}
+				if (wParam == 'A' || wParam == 'E' || wParam == 'I' || wParam == 'O' || wParam == 'U')
+				{
+					MessageBox(hWnd, L"vowels was pressed", L"M was pressed", MB_OK);
+				}
 
 			}
 			break;
+		
+		case WM_KEYDOWN:
+		{
+			if (wParam == 'Q')
+			{
+				//MessageBox(hWnd, L"M was pressed", L"M was pressed", MB_OK);
+				PostQuitMessage(0);
+			}
 
+		}
+		break;
 		case WM_LBUTTONDOWN:
 			{
 				iMouseCount++;
 				if(iMouseCount >= 5)
 				{
-					MessageBox(hWnd, L"Mouse was clicked 5 times!", L"Mouse Pressed", MB_OK);
+					//MessageBox(hWnd, L"Mouse was clicked 5 times!", L"Mouse Pressed", MB_OK);
+					PostQuitMessage(0);
 					iMouseCount = 0;
 				}
 			}
