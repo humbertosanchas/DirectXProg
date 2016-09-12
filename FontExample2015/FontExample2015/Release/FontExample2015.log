@@ -1,0 +1,13 @@
+﻿  DirectX.cpp
+  Font.cpp
+  myProject.cpp
+  Timer.cpp
+DirectX.obj : error LNK2001: unresolved external symbol _D3D11CreateDeviceAndSwapChain@48
+Font.obj : error LNK2001: unresolved external symbol "public: void __cdecl DirectX::SpriteBatch::End(void)" (?End@SpriteBatch@DirectX@@QAAXXZ)
+Font.obj : error LNK2001: unresolved external symbol "public: void __vectorcall DirectX::SpriteBatch::Begin(enum DirectX::SpriteSortMode,struct ID3D11BlendState *,struct ID3D11SamplerState *,struct ID3D11DepthStencilState *,struct ID3D11RasterizerState *,class std::function<void __cdecl(void)>,struct DirectX::XMMATRIX)" (?Begin@SpriteBatch@DirectX@@QAQXW4SpriteSortMode@2@PAUID3D11BlendState@@PAUID3D11SamplerState@@PAUID3D11DepthStencilState@@PAUID3D11RasterizerState@@V?$function@$$A6AXXZ@std@@UXMMATRIX@2@@Z)
+Font.obj : error LNK2001: unresolved external symbol "public: __thiscall DirectX::SpriteBatch::SpriteBatch(struct ID3D11DeviceContext *)" (??0SpriteBatch@DirectX@@QAE@PAUID3D11DeviceContext@@@Z)
+Font.obj : error LNK2001: unresolved external symbol "private: static struct DirectX::XMMATRIX const DirectX::SpriteBatch::MatrixIdentity" (?MatrixIdentity@SpriteBatch@DirectX@@0UXMMATRIX@2@B)
+Font.obj : error LNK2001: unresolved external symbol "public: void __vectorcall DirectX::SpriteFont::DrawString(class DirectX::SpriteBatch *,wchar_t const *,struct DirectX::XMFLOAT2 const &,union __m128,float,struct DirectX::XMFLOAT2 const &,float,enum DirectX::SpriteEffects,float)const " (?DrawString@SpriteFont@DirectX@@QBQXPAVSpriteBatch@2@PB_WABUXMFLOAT2@2@T__m128@@M2MW4SpriteEffects@2@M@Z)
+Font.obj : error LNK2001: unresolved external symbol "public: __thiscall DirectX::SpriteFont::SpriteFont(struct ID3D11Device *,wchar_t const *,bool)" (??0SpriteFont@DirectX@@QAE@PAUID3D11Device@@PB_W_N@Z)
+Font.obj : error LNK2001: unresolved external symbol "private: static struct DirectX::XMFLOAT2 const DirectX::SpriteFont::Float2Zero" (?Float2Zero@SpriteFont@DirectX@@0UXMFLOAT2@2@B)
+C:\Teaching\Fall2016\BTGD9201\Week1\FontExample_Start\FontExample2015\Release\FontExample2015.exe : fatal error LNK1120: 8 unresolved externals
