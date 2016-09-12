@@ -39,6 +39,7 @@ MyProject::MyProject(HINSTANCE hInstance)
 void MyProject::InitializeFonts()
 {
 	timesNewRoman24Bold.InitializeFont(D3DDevice, DeviceContext, L"..\\Font\\TimesnewRoman24Bold.spritefont" );
+	modak30.InitializeFont(D3DDevice, DeviceContext, L"..\\Font\\Modak30.spritefont");
 
 
 
@@ -74,7 +75,7 @@ void MyProject::Render(void)
 	ws << message << L"X: " << mouseX << L" Y: " << mouseY; 
 
 	//print string to the screen using a font
-	timesNewRoman24Bold.PrintMessage(mouseX, mouseY, ws.str(), FC_RED); 
+	modak30.PrintMessage(mouseX, mouseY, ws.str(), FC_RED); 
 
 
 	// render the base class

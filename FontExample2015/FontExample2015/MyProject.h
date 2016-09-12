@@ -26,7 +26,7 @@ public:
 
 private:
 	FontType timesNewRoman24Bold;
-	
+	FontType modak30;
 
 
 	int mouseX;
