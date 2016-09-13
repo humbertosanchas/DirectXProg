@@ -44,6 +44,7 @@ private:
 	//Texture members
 	//create a pointer to a texture
 	ID3D11Texture2D *pTexture;
+	ID3D11Texture2D *pCompiling;
 	
 };
 

@@ -34,6 +34,7 @@ MyProject::MyProject(HINSTANCE hInstance)
 	mouseY = -1000;
 
 	pTexture = NULL;
+	pCompiling = NULL;
 }
 
 //----------------------------------------------------------------------------------------------
@@ -57,8 +58,9 @@ void MyProject::InitializeFonts()
 //---------------------------------------------------------------------------------------------
 void MyProject::InitializeTextures()
 {
-	HRESULT result = DirectX::CreateWICTextureFromFile(D3DDevice, L"..\\Textures\\Flower.PNG", (ID3D11Resource**)&pTexture, NULL);
-	if (result != S_OK)
+	HRESULT result = DirectX::CreateWICTextureFromFile(D3DDevice, L"..\\Textures\\Flower.PNG", (ID3D11Resource**)&pTexture, NULL);	
+	HRESULT res = DirectX::CreateWICTextureFromFile(D3DDevice, L"..\\Textures\\Fireworks.PNG", (ID3D11Resource**)&pCompiling, NULL);
+	if (res != S_OK || result != S_OK)
 	{
 		MessageBox(mainWnd, L"Could not load texture", L"ERROR", MB_OK | MB_ICONERROR);
 	}
@@ -109,6 +111,30 @@ void MyProject::Render(void)
 
 		//Copy the texture to the backbuffer (render to the backbuffer)
 		DeviceContext->CopySubresourceRegion(BackBuffer, 0, 100, 100, 0, pTexture, 0, &sourceRegion);
+	}
+
+	if (pCompiling != NULL)
+	{
+		//Get the descriptior of the texture
+		D3D11_TEXTURE2D_DESC desc;
+		pCompiling->GetDesc(&desc);
+
+		//describe the region we are copying from the source
+		D3D11_BOX sourceRegion;
+		sourceRegion.left = desc.Width/2;
+		sourceRegion.right = desc.Width;
+		sourceRegion.top = desc.Height/2;
+		sourceRegion.bottom = desc.Height;
+		sourceRegion.front = 0;
+		sourceRegion.back = 1;
+
+		//Copy the texture to the backbuffer (render to the backbuffer)
+		DeviceContext->CopySubresourceRegion(BackBuffer, 0, 200, 200, 0, pCompiling, 0, &sourceRegion);
+
+		if (mouseX >= 0 && mouseX <= 1023 && mouseY >= 0 && mouseY <= 767)
+		{
+			DeviceContext->CopySubresourceRegion(BackBuffer, 0, mouseX, mouseY, 0, pCompiling, 0, &sourceRegion);
+		}
 	}
 
 
