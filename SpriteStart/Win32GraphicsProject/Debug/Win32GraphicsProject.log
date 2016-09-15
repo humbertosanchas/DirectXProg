@@ -1,0 +1,8 @@
+﻿  MyProject.cpp
+c:\users\administrator\source\repos\directxprog\spritestart\win32graphicsproject\myproject.cpp(126): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\administrator\source\repos\directxprog\spritestart\win32graphicsproject\myproject.cpp(129): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\administrator\source\repos\directxprog\spritestart\win32graphicsproject\myproject.cpp(130): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\administrator\source\repos\directxprog\spritestart\win32graphicsproject\myproject.cpp(131): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\administrator\source\repos\directxprog\spritestart\win32graphicsproject\myproject.cpp(132): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Win32GraphicsProject.vcxproj -> C:\Users\Administrator\Source\Repos\DirectXProg\SpriteStart\Debug\Win32GraphicsProject.exe
+  Win32GraphicsProject.vcxproj -> C:\Users\Administrator\Source\Repos\DirectXProg\SpriteStart\Debug\Win32GraphicsProject.pdb (Full PDB)

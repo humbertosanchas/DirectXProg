@@ -33,6 +33,8 @@ MyProject::MyProject(HINSTANCE hInstance)
 	srand( (unsigned int) time(NULL) );
 
 	StartGame();
+
+
 }
 
 //----------------------------------------------------------------------------------------------
@@ -40,7 +42,7 @@ MyProject::MyProject(HINSTANCE hInstance)
 //----------------------------------------------------------------------------------------------
 void MyProject::InitializeFonts()
 {
-	timesNewRoman24Bold.InitializeFont(D3DDevice, DeviceContext, L"..\\Font\\TimesnewRoman24Bold.spritefont" );
+	timesNewRoman24Bold.InitializeFont(D3DDevice, DeviceContext, L"..\\Font\\Righteous30.spritefont" );
 }
 
 //----------------------------------------------------------------------------------------------
@@ -89,6 +91,7 @@ void MyProject::Render(void)
 //----------------------------------------------------------------------------------------------
 void MyProject::StartGame()
 {
-	// picks a number betwee 0 and 999999
-	int r = rand() % 1000000;
+	// picks a number betwee 1 and 100
+	int r = rand() % 100 + 1;
 }
+
