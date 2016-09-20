@@ -45,6 +45,8 @@ private:
 	float movementSpeed;
 	float changeMovementAmount;
 	float rotationSpeed;
+	float scaleAmount;
+	
 
 	// sprite batch 
 	DirectX::SpriteBatch* spriteBatch;

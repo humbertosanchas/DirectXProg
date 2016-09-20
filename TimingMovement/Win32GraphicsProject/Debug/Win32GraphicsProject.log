@@ -1,4 +1,4 @@
 ﻿  MyProject.cpp
-c:\users\administrator\source\repos\directxprog\timingmovement\win32graphicsproject\myproject.cpp(77): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\administrator\source\repos\directxprog\timingmovement\win32graphicsproject\myproject.cpp(78): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   Win32GraphicsProject.vcxproj -> C:\Users\Administrator\Source\Repos\DirectXProg\TimingMovement\Debug\Win32GraphicsProject.exe
   Win32GraphicsProject.vcxproj -> C:\Users\Administrator\Source\Repos\DirectXProg\TimingMovement\Debug\Win32GraphicsProject.pdb (Full PDB)

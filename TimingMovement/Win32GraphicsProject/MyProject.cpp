@@ -46,13 +46,14 @@ MyProject::MyProject(HINSTANCE hInstance)
 	mousePos = Vector2(clientWidth * 0.5f, clientHeight * 0.5f);
 	buttonDown = false;
 	spriteBatch = NULL;
-	
+
 	ClearColor = Color(DirectX::Colors::Black.v);
 
 	direction = 1;
-	movementSpeed = 1024/4;
+	movementSpeed = 1024 / 4;
 	changeMovementAmount = movementSpeed;
-	rotationSpeed = 365;
+	rotationSpeed = 180;
+	scaleAmount = 0.5;
 }
 
 //----------------------------------------------------------------------------------------------
@@ -147,10 +148,19 @@ void MyProject::Update(float deltaTime)
 	// move the rock 
 	Vector2 pos = rockSprite.GetPosition();
 	float rotation = rockSprite.GetRotation();
+	float scale = rockSprite.GetScale();
+	Color colour = rockSprite.GetColor();
+	
 	pos.x += direction * (movementSpeed * deltaTime);
 	rotation += rotationSpeed * deltaTime;
+	scale += scaleAmount * deltaTime;
+	if (scale <= 1 || scale >= 5)
+	{
+		scaleAmount *= -1;
+	}
+
 	rockSprite.SetRotation(rotation);
-	
+	rockSprite.SetScale(scale);
 	rockSprite.SetPosition(pos);
 
 	// if it's off screen, switch directions
