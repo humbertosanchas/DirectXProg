@@ -41,12 +41,12 @@ Sprite::Sprite()
 	textureRegion.left = 0;
 	textureRegion.top = 0;
 	textureRegion.bottom = 0;
-	textureRegion.right = 0;
+	textureRegion.right = 0;	
 }
 
 // -----------------------------------------------------------------------------
 // initialize the sprite
-void Sprite::Initialize( TextureType* pTex, Vector2 pos, float rotInDegrees, float scl, Color clr, float lyr ) 
+void Sprite::Initialize( TextureType* pTex, Vector2 pos, float rotInDegrees, float scl, Color clr, float lyr) 
 {
 	pTexture = pTex;
 	position = pos;
@@ -54,6 +54,7 @@ void Sprite::Initialize( TextureType* pTex, Vector2 pos, float rotInDegrees, flo
 	scale = scl;
 	color = clr;
 	layer = lyr;
+	
 
 	if ( pTexture )
 	{
@@ -65,6 +66,7 @@ void Sprite::Initialize( TextureType* pTex, Vector2 pos, float rotInDegrees, flo
 
 	// updates the pivot based on the texture size
 	SetPivot( pivot );
+	
 }
 
 // -----------------------------------------------------------------------------
@@ -180,4 +182,57 @@ Vector2	Sprite::GetCenterNoRotation() const
 		return position + Vector2(-halfwidth, -halfheight);
 	}
 	return position;
+}
+
+void Sprite::SetTextureAnimation(int frameSizeX, int frameSizeY, int framesPerSecond) 
+{
+	if (pTexture == nullptr)
+	{
+		return;
+	}
+	frameWidth = frameSizeX;
+	frameHeight = frameSizeY;
+	int rows = pTexture->GetWidth() / frameWidth;
+	int cols = pTexture->GetHeight() / frameHeight;
+	totalFrames = rows * cols;
+	CurrentFrame = 0;
+
+	elapsedTime = 0;
+	frameTime = 1.0 / framesPerSecond;
+
+	SetTextureAnimationRegion();
+}
+
+void Sprite::SetTextureAnimationRegion()
+{
+	//get # of Cols
+	int cols = pTexture->GetHeight() / frameHeight;
+	//get Col + rows
+	int c = CurrentFrame % cols;
+	int r = CurrentFrame / cols;
+
+	textureRegion.left = c * frameWidth;
+	textureRegion.right = (c + 1) * frameWidth;
+	textureRegion.top = r* frameHeight;
+	textureRegion.bottom = (r + 1)* frameHeight;
+
+	//update origin
+	SetPivot(pivot);
+}
+
+void Sprite::UpdateAnimation(float deltaTime)
+{
+	if (totalFrames > 0)
+	{
+		elapsedTime += deltaTime;
+
+		int advanceFrames = int(elapsedTime / frameTime);
+		elapsedTime = fmod(elapsedTime, frameTime);
+		//advance annima
+		//% wraps it to 0
+		CurrentFrame = (CurrentFrame + advanceFrames) % totalFrames;
+
+		//recal to region
+		SetTextureAnimationRegion();
+	}
 }

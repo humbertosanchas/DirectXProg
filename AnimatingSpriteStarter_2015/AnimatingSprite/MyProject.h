@@ -39,9 +39,15 @@ private:
 	TextureType rockTex;
 
 	Sprite		rockSprite;
+	Sprite rockSprite1;
+	Sprite rockSprite2;
+	Sprite rockSprite3;
+	Sprite rockSprite4;
 
 	// how many pixels/second are we moving
 	float movementSpeed;
+	float movementSpeed1;
+	float movementSpeed2;
 	float rotationSpeed; // how many degrees per second are we moving
 
 	// sprite batch 

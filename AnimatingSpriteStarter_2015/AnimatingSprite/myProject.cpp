@@ -49,6 +49,8 @@ MyProject::MyProject(HINSTANCE hInstance)
 	ClearColor = Color(DirectX::Colors::Black.v);
 
 	movementSpeed = 60; // 60 pixels per second
+	movementSpeed1 = 25;
+	movementSpeed2 = 90;
 	rotationSpeed = 45;
 }
 
@@ -69,9 +71,17 @@ void MyProject::InitializeTextures()
 	spriteBatch = new DirectX::SpriteBatch( DeviceContext );
 
 	backGroundTex.Load( D3DDevice, L"..\\Textures\\starfield.dds" );
-	rockTex.Load( D3DDevice, L"..\\Textures\\Rock.png" );
+	rockTex.Load( D3DDevice, L"..\\Textures\\rockSheet.png" );
 
-	rockSprite.Initialize(&rockTex, Vector2(0, clientHeight / 2), 0, 1, Colors::White.v, 0.0f );
+	rockSprite.Initialize(&rockTex, Vector2(0, (clientHeight - (clientHeight / 1.2))), 0, 1, Colors::White.v, 0.0f);
+	rockSprite.SetTextureAnimation(60, 60, 60);
+	rockSprite1.Initialize(&rockTex, Vector2(0, clientHeight / 2), 0, 1, Colors::White.v, 0.0f);
+	rockSprite1.SetTextureAnimation(60, 60, 120);
+	rockSprite2.Initialize(&rockTex, Vector2(0, (clientHeight - (clientHeight / 6))), 0, 1, Colors::White.v, 0.0f);
+	rockSprite2.SetTextureAnimation(60, 60, 15);
+	rockSprite3.Initialize(&rockTex, Vector2(0, (clientHeight - (clientHeight / 12))), 0, 1, Colors::White.v, 0.0f);
+	rockSprite3.SetTextureAnimation(60, 60, 240);
+	
 
 }
 
@@ -120,6 +130,10 @@ void MyProject::Render(void)
 	// draw your stuff here
 	spriteBatch->Begin();
 	rockSprite.Draw(spriteBatch);
+	rockSprite1.Draw(spriteBatch);
+	rockSprite2.Draw(spriteBatch);
+	rockSprite3.Draw(spriteBatch);
+	rockSprite4.Draw(spriteBatch);
 	spriteBatch->End();
 
 
@@ -133,26 +147,47 @@ void MyProject::Render(void)
 //----------------------------------------------------------------------------------------------
 void MyProject::Update(float deltaTime)
 {
-	// move the rock 
+	
+	//move the rock 
 	Vector2 pos = rockSprite.GetPosition();
+	Vector2 pos1 = rockSprite1.GetPosition();
+	Vector2 pos2 = rockSprite3.GetPosition();
+	Vector2 pos3 = rockSprite3.GetPosition();
+
 	pos.x += movementSpeed * deltaTime;
+	pos1.x += movementSpeed1 * deltaTime;
+	pos2.x += movementSpeed2 * deltaTime;
+	pos3.x += movementSpeed1 * deltaTime;
 	rockSprite.SetPosition(pos);
+	rockSprite1.SetPosition(pos1);
+	rockSprite2.SetPosition(pos3);
+	rockSprite3.SetPosition(pos2);
+	
 
 	// rotate the rock
 	float rot = rockSprite.GetRotation();
 	rot += rotationSpeed * deltaTime;
 	rockSprite.SetRotation(rot);
 
+	
+
 	// if it's off screen, switch directions
 	if (pos.x < 0)	
 	{
 		movementSpeed = fabsf(movementSpeed);
 	}
+	
 	else if (pos.x > clientWidth)
 	{
-		movementSpeed = -fabsf(movementSpeed);
+		pos.x = 0;
+		rockSprite.SetPosition(pos);
 	}
 		
+	rockSprite.UpdateAnimation(deltaTime);
+	rockSprite1.UpdateAnimation(deltaTime);
+	rockSprite2.UpdateAnimation(deltaTime);
+	rockSprite3.UpdateAnimation(deltaTime);
+	rockSprite4.UpdateAnimation(deltaTime);
 }
 
 //----------------------------------------------------------------------------------------------

@@ -79,6 +79,13 @@ public:
 	float GetScale() const { return scale;  }
 	void SetScale(float f) { scale = f;  }
 
+	void SetTextureAnimation(int FrameSizeX, int frameSizeY, int framesPerSecond);
+
+	void SetTextureAnimationRegion();
+
+	void UpdateAnimation(float deltaTime);
+
+
 
 private:
 	// transformation information
@@ -100,6 +107,13 @@ private:
 
 	// get the center position of the sprite (internal helper)
 	Vector2			GetCenterNoRotation() const;
+
+	int frameWidth;
+	int frameHeight;
+	int totalFrames;
+	int CurrentFrame;
+	double elapsedTime;
+	double frameTime;
 };
 
 

@@ -1,0 +1,7 @@
+﻿  myProject.cpp
+c:\users\administrator\source\repos\directxprog\animatingspritestarter_2015\animatingsprite\myproject.cpp(76): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\administrator\source\repos\directxprog\animatingspritestarter_2015\animatingsprite\myproject.cpp(78): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\administrator\source\repos\directxprog\animatingspritestarter_2015\animatingsprite\myproject.cpp(80): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\administrator\source\repos\directxprog\animatingspritestarter_2015\animatingsprite\myproject.cpp(82): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  AnimatingSprite.vcxproj -> C:\Users\Administrator\Source\Repos\DirectXProg\AnimatingSpriteStarter_2015\Debug\AnimatingSprite.exe
+  AnimatingSprite.vcxproj -> C:\Users\Administrator\Source\Repos\DirectXProg\AnimatingSpriteStarter_2015\Debug\AnimatingSprite.pdb (Full PDB)
