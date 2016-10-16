@@ -18,6 +18,8 @@ using namespace DirectX::SimpleMath;
 // returns a random float between 0 & 1
 float RandFloat() { return float(rand())/float(RAND_MAX); } 
 
+
+
 //----------------------------------------------------------------------------------------------
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, int nShowCmd)
 {
@@ -172,6 +174,22 @@ void MyProject::OnMouseDown()
 	// mouse position is stored in mousePos variable
 }
 
+
+DirectX::SimpleMath::Color MyProject::GenerateRandColour()
+{
+	return (colours[rand() % 5]);
+}
+
+float MyProject::GenerateRandX()
+{
+	return (float)(rand() % (clientWidth - 2) + 5);
+}
+
+float MyProject::GenerateRandScale()
+{
+	return (float)((rand() % 20 + 1)*0.10f);
+}
+
 void MyProject::InitAsteroids()
 {
 	
@@ -179,11 +197,12 @@ void MyProject::InitAsteroids()
 	{	
 		Sprite astroid;
 		astroid.Initialize(&rockTex, Vector2(0.0f, 0.0f), 0, 1, Colors::White.v, 0.0f);
-		astroid.SetTextureAnimation(60, 60, 60);
-		int randX = rand() % clientWidth + 1;
-		int randY = rand() % clientHeight + 1;
-		randY *= -1;
-		astroid.SetPosition(Vector2((float)randX, (float)randY));
+		astroid.SetTextureAnimation(60, 60, ((rand() % 60) + 60));		
+		astroid.SetPosition(Vector2(GenerateRandX(), (float)((rand() % clientHeight + 1)*-1)));
+		astroid.SetRotationVelocity((float)((rand() % 50) + 1));
+		astroid.SetVelocity(Vector2(0.0f, (float)(rand() % 25) + 25),astroid.GetRotationalVelocity());
+		astroid.SetScale(GenerateRandScale());
+		astroid.SetColor(GenerateRandColour());
 		astroids[c] = astroid;
 	}
 }
@@ -192,14 +211,19 @@ void MyProject::MoveAsteroids(float deltaTime)
 {
 	for (int c = 0; c < MyProject::NUM_OF_ASTROIDS; c++)
 	{
-		int movementSpeed = 100;
+		
 		Vector2 pos = astroids[c].GetPosition();
-		pos.y += movementSpeed * deltaTime;
+		Vector2 vol = astroids[c].GetVelocity();
+		astroids[c].SetRotation(astroids[c].GetRotation() + astroids[c].GetRotationalVelocity()*deltaTime);
+		pos.y += vol.y * deltaTime;
 		astroids[c].SetPosition(pos);		
 		if (astroids[c].GetPosition().y > clientHeight)
 		{
 			pos.y = -2;
+			pos.x = GenerateRandX();
 			astroids[c].SetPosition(pos);
+			astroids[c].SetScale(GenerateRandScale());
+			astroids[c].SetColor(GenerateRandColour());
 		}
 		astroids[c].UpdateAnimation(deltaTime);
 	}

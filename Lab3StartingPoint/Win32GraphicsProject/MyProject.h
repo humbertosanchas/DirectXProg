@@ -18,6 +18,7 @@ class MyProject : public DirectXClass
 {
 public:
 	static const int NUM_OF_ASTROIDS = 10;
+	static const int NUM_OF_COLOURS = 5;
 
 	// constructor
 	MyProject(HINSTANCE hInstance);
@@ -47,6 +48,7 @@ private:
 	TextureType explosionTex;
 
 	Sprite astroids[NUM_OF_ASTROIDS];
+	const Color colours[NUM_OF_COLOURS] = {DirectX::Colors::Red.v, DirectX::Colors::Blue.v, DirectX::Colors::Green.v, DirectX::Colors::Yellow.v, DirectX::Colors::White.v };
 
 	/*Sprite astroid;*/
 
@@ -62,6 +64,14 @@ private:
 
 	// call when the mouse is released
 	void OnMouseDown();
+
+	DirectX::SimpleMath::Color GenerateRandColour();
+
+	float GenerateRandScale();
+
+	float GenerateRandX();
+
+
 
 };
 

@@ -15,7 +15,7 @@ using namespace DirectX::SimpleMath;
 const float twoPi = 3.141592f * 2.0f;
 
 // convert degrees to radians
-inline float DegToRad( float deg ) { return 3.141592f * deg / 180.0f; } 
+//float DegToRad( float deg ) { return 3.141592f * deg / 180.0f; } 
 
 // clamp an integer
 inline int Clamp( int v, int min, int max ) 

@@ -82,6 +82,11 @@ public:
 	// set the velocity of the sprite
 	void SetVelocity(Vector2 velocityPixPerSec, float rotationalVelocityDegPerSec);
 	Vector2 GetVelocity() const { return velocity;  }
+
+	float DegToRad(float deg) { return 3.141592f * deg / 180.0f; }
+
+	//set&get rotation volicity
+	void SetRotationVelocity(float rotationDeg) { rotationalVelocity = DegToRad(rotationDeg); }
 	float GetRotationalVelocity() { return rotationalVelocity * 180.0f / 3.141592f; }
 
 	// Set up a texture animation
