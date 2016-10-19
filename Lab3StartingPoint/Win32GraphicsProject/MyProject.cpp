@@ -35,6 +35,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, 
 		application.SetDepthStencil(true);      // Tell DirectX class to create and maintain a depth stencil buffer
 		application.InitializeTextures();
 		application.InitAsteroids();
+		application.InitShip();
 		application.MessageLoop();	
 		
 		
@@ -88,7 +89,41 @@ LRESULT MyProject::ProcessWindowMessages(UINT msg, WPARAM wParam, LPARAM lParam)
 {
 	switch (msg )
 	{
-	case WM_MOUSEMOVE:
+		case WM_KEYDOWN:
+			if (wParam == 'w' || wParam == VK_UP)
+			{
+				shipVelocityY = ship.GetPosition().y - shipSpeed;
+				shipVelocityX = ship.GetPosition().x;
+				break;
+			}
+			if (wParam == 'a' || wParam == VK_LEFT)
+			{
+				shipVelocityX = ship.GetPosition().x - shipSpeed;
+				shipVelocityY = ship.GetPosition().y;
+				break;
+			}
+			if (wParam == 's' || wParam == VK_DOWN)
+			{
+				shipVelocityY = ship.GetPosition().y + shipSpeed;
+				shipVelocityX = ship.GetPosition().x;
+				break;
+			}
+			if (wParam == 'd' || wParam == VK_RIGHT)
+			{
+				shipVelocityX = ship.GetPosition().x + shipSpeed;
+				shipVelocityY = ship.GetPosition().y;
+				break;
+			}
+		case WM_IME_KEYUP:
+
+			shipVelocityX = ship.GetPosition().x;
+			shipVelocityY = ship.GetPosition().y;
+			break;
+		
+
+
+			
+	/*case WM_MOUSEMOVE:
 		mousePos.x = (float) GET_X_LPARAM(lParam);
 		mousePos.y = (float) GET_Y_LPARAM(lParam);
 		return 0;
@@ -102,7 +137,7 @@ LRESULT MyProject::ProcessWindowMessages(UINT msg, WPARAM wParam, LPARAM lParam)
 		mousePos.x = (float) GET_X_LPARAM(lParam);
 		mousePos.y = (float) GET_Y_LPARAM(lParam);
 		OnMouseDown();
-		break;
+		break;*/
 
 	}
 
@@ -127,7 +162,7 @@ void MyProject::Render(void)
 		astr.Draw(spriteBatch);*/
 		astroids[c].Draw(spriteBatch);
 	}
-		
+	ship.Draw(spriteBatch);
 
 	// draw sprites
 
@@ -146,6 +181,8 @@ void MyProject::Update(float deltaTime)
 {
 	//// update the explosion
 	MoveAsteroids(deltaTime);
+	ship.SetPosition(Vector2(shipVelocityX*deltaTime , shipVelocityY*deltaTime));
+	ship.UpdateAnimation(deltaTime);
 
 	/*for (int c = 0; c < MyProject::NUM_OF_ASTROIDS; c++)
 	{
@@ -188,6 +225,14 @@ float MyProject::GenerateRandX()
 float MyProject::GenerateRandScale()
 {
 	return (float)((rand() % 20 + 1)*0.10f);
+}
+
+void MyProject::InitShip()
+{
+	shipSpeed = 25;
+	ship.Initialize(&shipTex, Vector2((float)(clientWidth / 2 - ship.GetWidth() / 2), (float)(clientHeight - ship.GetHeight())), 0, 1, Colors::White.v, 0.0f);
+	shipVelocityX = ship.GetPosition().x;
+	shipVelocityY = ship.GetPosition().y;
 }
 
 void MyProject::InitAsteroids()

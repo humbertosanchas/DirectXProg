@@ -1,3 +1,4 @@
 ﻿  MyProject.cpp
+cl : Command line warning D9028: minimal rebuild failure, reverting to normal build
   Win32GraphicsProject.vcxproj -> C:\Users\Humberto\Documents\Visual Studio 2015\Projects\DirectXProg\Lab3StartingPoint\Debug\Win32GraphicsProject.exe
   Win32GraphicsProject.vcxproj -> C:\Users\Humberto\Documents\Visual Studio 2015\Projects\DirectXProg\Lab3StartingPoint\Debug\Win32GraphicsProject.pdb (Full PDB)

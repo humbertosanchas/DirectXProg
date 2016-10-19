@@ -36,6 +36,8 @@ public:
 	// Called by directX framework to allow you to update any scene objects
 	void Update(float deltaTime);
 
+	void InitShip();
+
 	void InitAsteroids();
 
 	void MoveAsteroids(float deltaTime);
@@ -47,6 +49,8 @@ private:
 	TextureType shipTex;
 	TextureType explosionTex;
 
+
+	Sprite ship;
 	Sprite astroids[NUM_OF_ASTROIDS];
 	const Color colours[NUM_OF_COLOURS] = {DirectX::Colors::Red.v, DirectX::Colors::Blue.v, DirectX::Colors::Green.v, DirectX::Colors::Yellow.v, DirectX::Colors::White.v };
 
@@ -70,6 +74,10 @@ private:
 	float GenerateRandScale();
 
 	float GenerateRandX();
+
+	float shipVelocityX;
+	float shipVelocityY;
+	float shipSpeed;
 
 
 
