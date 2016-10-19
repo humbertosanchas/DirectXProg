@@ -1,0 +1,3 @@
+﻿  MyProject.cpp
+c:\users\humberto\documents\visual studio 2015\projects\directxprog\lab3startingpoint\win32graphicsproject\myproject.cpp(265): warning C4715: 'MyProject::TestCollision': not all control paths return a value
+  Win32GraphicsProject.vcxproj -> C:\Users\Humberto\Documents\Visual Studio 2015\Projects\DirectXProg\Lab3StartingPoint\Debug\Win32GraphicsProject.exe
