@@ -48,7 +48,6 @@ private:
 	float lightPitch;
 	float lightYaw;
 
-
 	IndexedPrimitive primitive;
 
 	Matrix worldMatrix;

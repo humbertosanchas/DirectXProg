@@ -21,6 +21,9 @@ cbuffer LIGHT_BUFFER : register(b1)
 
 	float4 directionalLightColor;
 	float4 directionalLightVector;
+
+	float4 directionalLightColor2;
+	float4 directionalLightVector2;
 }
 
 

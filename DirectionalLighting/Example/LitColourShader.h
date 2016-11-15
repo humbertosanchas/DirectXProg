@@ -17,6 +17,8 @@ struct LightConstants
 	Color  ambientLight;
 	Color   directionalLightColor;
 	Vector4 directionalLightVector;
+	Color   directionalLightColor2;
+	Vector4 directionalLightVector2;
 };
 
 class LitColourShader
@@ -40,7 +42,7 @@ public:
 	void SetAmbientLight(Color clr); 
 	
 	// set the new directional light
-	void SetDirectionalLight(Color clr, Vector3 direction);
+	void SetDirectionalLight(Color clr, Vector3 direction , Color clr2, Vector3 direction2);
 
 private:
 

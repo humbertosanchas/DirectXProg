@@ -11,7 +11,8 @@ float4 main(PS_INPUT input) : SV_TARGET
 
 	float4 finalColor = 
 		   AmbientLighting(input.Color, ambientColour) 
-	     + DiffuseLighting(directionalLightVector.xyz, normal, directionalLightColor, input.Color);
+		+ DiffuseLighting(directionalLightVector.xyz, normal, directionalLightColor, input.Color)
+	    + DiffuseLighting(directionalLightVector2.xyz, normal, directionalLightColor2, input.Color);	
 
 	finalColor.a = 1;
 

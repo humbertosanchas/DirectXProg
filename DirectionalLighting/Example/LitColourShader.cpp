@@ -218,13 +218,18 @@ void LitColourShader::SetAmbientLight(Color clr)
 //-----------------------------------------------------
 // Sets the directional light
 //-----------------------------------------------------
-void LitColourShader::SetDirectionalLight(Color clr, Vector3 direction)
+void LitColourShader::SetDirectionalLight(Color clr, Vector3 direction, Color clr2, Vector3 direction2)
 {
 	lightsDirty = true;
 	lightingValues.directionalLightColor = clr;
 
 	// flip the direction of the vector so aligning with the normal is brightest
 	lightingValues.directionalLightVector = Vector4(-direction.x, -direction.y, -direction.z, 0);
+
+	lightingValues.directionalLightColor2 = clr2;
+
+	// flip the direction of the vector so aligning with the normal is brightest
+	lightingValues.directionalLightVector2 = Vector4(-direction.x, -direction.y, -direction.z, 0);
 
 }
 

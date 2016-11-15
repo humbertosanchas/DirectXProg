@@ -58,6 +58,7 @@ MyProject::MyProject(HINSTANCE hInstance)
 
 	lightYaw = 0;
 	lightPitch = 0;
+	
 }
 
 //----------------------------------------------------------------------------------------------
@@ -177,12 +178,14 @@ void MyProject::Update(float deltaTime)
 
 	// update the yaw of the light at 4 seconds / revolution
 	lightYaw = lightYaw + deltaTime * 90.0f * XM_PI / 180.0f;
+	
 
 	// calculate the facing direction using the updated yaw
-	Vector3 dir = Matrix::CreateFromYawPitchRoll(lightYaw, lightPitch, 0).Forward();
+	Vector3 dir = Matrix::CreateFromYawPitchRoll(1, lightPitch, 0).Forward();
+	Vector3 dir2 = Matrix::CreateFromYawPitchRoll(0, 0, 0).Forward();
 
 	// set the directional light
-	shader.SetDirectionalLight(Color(0.6f, 0.7f, 0.8f), dir);
+	shader.SetDirectionalLight(Color(0.6f, 0.7f, 0.8f), dir, Color(1.0f, 0.0f, 0.0f), dir2);
 
 
 }
