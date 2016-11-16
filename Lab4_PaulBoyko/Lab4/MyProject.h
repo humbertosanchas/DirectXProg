@@ -4,7 +4,12 @@
 #include "DirectX.h"
 #include "Font.h"
 #include "TextureType.h"
-
+#include "IndexedPrimitive.h"
+#include "Diamond.h"
+#include "EightSidedThing.h"
+#include "PointyShape.h"
+//Paul Boyko Nov 16 2016
+//Drawing 3D Shapes with Index and Vertex Buffer
 // forward declare the sprite batch
 
 using namespace DirectX;
@@ -40,6 +45,20 @@ public:
 
 private:
 
+	IndexedPrimitive indexPrim;
+	Diamond diamond;
+	EightSidedThing eightSideThing;
+	PointyShape pointyShape;
+
+
+	float rotation;
+
+	Matrix worldMatrix;
+	Matrix diamondWorldMatrix;
+	Matrix eightSideThingWorldMatrix;
+	Matrix pointyShapeWorldMatrix;
+	Matrix treeTrunkWorldMatrix;
+	Matrix treeTopWorldMatrix;
 	Matrix viewMatrix;
 	Matrix projectionMatrix;
 

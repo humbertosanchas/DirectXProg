@@ -4,7 +4,8 @@
 #include <DirectXColors.h>
 #include <sstream>
 #include <CommonStates.h>
-
+//Paul Boyko Nov 16 2016
+//Drawing 3D Shapes with Index and Vertex Buffer
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
@@ -54,6 +55,8 @@ MyProject::MyProject(HINSTANCE hInstance)
 
 	cameraRotation = Vector2::Zero;
 	cameraRotationSpeed = Vector2::Zero;
+
+	rotation = 0;
 }
 
 //----------------------------------------------------------------------------------------------
@@ -68,6 +71,16 @@ MyProject::~MyProject()
 //----------------------------------------------------------------------------------------------
 void MyProject::InitializeObjects()
 {
+	worldMatrix = Matrix();	
+
+	indexPrim.InitializeGeometry(D3DDevice);
+	indexPrim.InitializeShaders(D3DDevice);
+	diamond.InitializeGeometry(D3DDevice);
+	diamond.InitializeShaders(D3DDevice);
+	eightSideThing.InitializeGeometry(D3DDevice);
+	eightSideThing.InitializeShaders(D3DDevice);
+	pointyShape.InitializeGeometry(D3DDevice);
+	pointyShape.InitializeShaders(D3DDevice);
 }
 
 //----------------------------------------------------------------------------------------------
@@ -135,6 +148,14 @@ void MyProject::Render(void)
 {
 	// calculate camera matrices
 	ComputeViewProjection();
+	//Primatives
+	indexPrim.Draw(DeviceContext, worldMatrix, viewMatrix, projectionMatrix);
+	diamond.Draw(DeviceContext, diamondWorldMatrix, viewMatrix, projectionMatrix);
+	eightSideThing.Draw(DeviceContext, eightSideThingWorldMatrix, viewMatrix, projectionMatrix);
+	pointyShape.Draw(DeviceContext, pointyShapeWorldMatrix, viewMatrix, projectionMatrix);
+	//Tree
+	indexPrim.Draw(DeviceContext, treeTrunkWorldMatrix, viewMatrix, projectionMatrix);
+	eightSideThing.Draw(DeviceContext, treeTopWorldMatrix, viewMatrix, projectionMatrix);
 
 	// render the base class
 	DirectXClass::Render();
@@ -147,6 +168,15 @@ void MyProject::Render(void)
 void MyProject::Update(float deltaTime)
 {
 	UpdateCamera(deltaTime);
+	rotation += deltaTime * XM_PI / 8.0f;  //Rotation value to rotate per sec
+	//world Matrixes for all objects
+	worldMatrix = Matrix::CreateFromYawPitchRoll(rotation, rotation, rotation) * Matrix::CreateTranslation(Vector3(4.0f, 2.0f, 0.0f));
+	diamondWorldMatrix = Matrix::CreateFromYawPitchRoll(rotation, rotation, rotation) * Matrix::CreateTranslation(Vector3(-4.0f,-2.0f, 0.0f));
+	eightSideThingWorldMatrix = Matrix::CreateFromYawPitchRoll(rotation, rotation, rotation) * Matrix::CreateTranslation(Vector3(4.0f, -2.0f, 0.0f));
+	pointyShapeWorldMatrix = Matrix::CreateFromYawPitchRoll(rotation, rotation, rotation) * Matrix::CreateTranslation(Vector3(-4.0f, 2.0f, 0.0f));
+	treeTrunkWorldMatrix = Matrix::CreateScale(Vector3(0.25f, 3.0f, 0.25f)) * Matrix::CreateRotationY(rotation) * Matrix::CreateTranslation(Vector3(0.0f, 0.0f, 0.0f));
+	treeTopWorldMatrix =  Matrix::CreateRotationY(rotation) * Matrix::CreateTranslation(Vector3(0.0f, 2.0f, 0.0f));
+
 }
 
 
